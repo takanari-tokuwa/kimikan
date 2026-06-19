@@ -1,283 +1,509 @@
 <!DOCTYPE html>
+<!-- このHTML文書は日本語のページなので、htmlタグのlang属性をjaにしています。 -->
 <html lang="ja">
+
 <head>
+    <!-- 文字化けを防ぐため、文字コードをUTF-8にしています。 -->
     <meta charset="UTF-8">
+
+    <!-- スマホでも画面幅に合わせて自然に表示されるようにしています。 -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- ブラウザのタブに表示されるページ名です。 -->
     <title>きみがつくるAIモンスターで環境を守れ！</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
     <style>
-        :root {
-            --primary-green: #4ade80;
-            --secondary-blue: #3b82f6;
-            --accent-yellow: #facc15;
-            --dark-blue: #1e3a8a;
-            --light-bg: #f0fdf4;
-            --white: #ffffff;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
-        }
-
+        /* ページ全体に最初から入っている余白をなくします。 */
         body {
-            background-color: var(--light-bg);
-            color: #333;
+            margin: 0;
+
+            /* ページ全体の背景色を、やさしい薄い緑にします。 */
+            background-color: #f0fdf4;
+
+            /* 文字色を濃すぎない黒にします。 */
+            color: #333333;
+
+            /* 日本語でも英数字でも読みやすいフォントを指定します。 */
+            font-family: Arial, "Hiragino Sans", Meiryo, sans-serif;
+
+            /* 行の高さを少し広げて、文章を読みやすくします。 */
             line-height: 1.6;
-            overflow-x: hidden;
         }
 
-        /* ヘッダー・ヒーローセクション */
+        /* ヘッダーはページの最初に大きく表示する場所です。 */
         header {
-            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
-                        url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&q=80&w=2000'); /* 代替画像。実際にはアップロード画像を背景に設定推奨 */
-            background-size: cover;
+            /* 森の写真を背景にします。 */
+            background-image: url("./assets/img/P_Image2.png");
+            
+            /* 背景を黒にします。 */
+            background-color: black;
+
+            /* 背景画像 */
+            background-size: contain;
+
+            /* 背景画像の中央が見えるようにします。 */
             background-position: center;
+
+            /* 背景画像を繰り返さないようにします。 */
+            background-repeat: no-repeat;
+
+            /* ヘッダーの高さを画面の80%にします。 */
             height: 80vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+
+            /* 文字を中央揃えにします。 */
             text-align: center;
-            color: var(--white);
+
+            /* ヘッダー内の文字色を白にします。 */
+            color: #ffffff;
+
+            /* ヘッダー内の内容を縦方向に中央へ配置します。 */
+            display: flex;
+
+            /* 横方向の中央に配置します。 */
+            justify-content: center;
+
+            /* 縦方向の中央に配置します。 */
+            align-items: center;
+        }
+
+        /* 講座資料セクション全体のレイアウト */
+        .doc-section {
+            margin-bottom: 60px;
+        }
+        .doc-container {
+            display: table;
+            width: 100%;
+            table-layout: fixed;
+            border-spacing: 20px 0;
+            margin-top: 30px;
+        }
+        .doc-card {
+            display: table-cell;
+            background-color: #ffffff;
             padding: 20px;
+            border-radius: 20px;
+            text-align: center;
+            vertical-align: top;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+        .doc-link {
+            display: block;
+            text-decoration: none;
+            color: inherit;
+        }
+        .doc-link:hover {
+            opacity: 0.8;
+        }
+        .doc-image {
+            width: 100%;
+            max-width: 240px;
+            height: auto;
+            border-radius: 10px;
+            border: 1px solid #e5e7eb;
+            margin-bottom: 15px;
+        }
+        .doc-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: #1e3a8a;
+            margin: 0;
         }
 
-        .hero-content h1 {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
-            font-weight: 900;
-        }
 
-        .hero-content p {
-            font-size: 1.5rem;
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(5px);
-            padding: 10px 20px;
-            border-radius: 50px;
-            display: inline-block;
-        }
 
-        /* コンテンツ幅制限 */
-        .container {
+
+        /* メイン全体の横幅を読みやすく制限します。 */
+        main {
+            /* 最大幅を1000pxにします。 */
             max-width: 1000px;
+
+            /* 左右を自動余白にして中央寄せにします。 */
             margin: 0 auto;
+
+            /* 上下左右に余白を作ります。 */
             padding: 60px 20px;
         }
 
-        /* セクションタイトル */
-        .section-title {
-            text-align: center;
-            margin-bottom: 50px;
-            position: relative;
-        }
+        /* プロジェクト説明の白い箱です。 */
+        .intro {
+            /* 背景を白にします。 */
+            background-color: #ffffff;
 
-        .section-title h2 {
-            font-size: 2.5rem;
-            color: var(--dark-blue);
-            display: inline-block;
-            border-bottom: 5px solid var(--primary-green);
-            padding-bottom: 10px;
-        }
-
-        /* プロジェクト説明 */
-        .intro-box {
-            background: var(--white);
+            /* 箱の内側に余白を作ります。 */
             padding: 40px;
+
+            /* 角を丸くします。 */
             border-radius: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+
+            /* 左側に緑の太い線を入れて、目立たせます。 */
+            border-left: 10px solid #4ade80;
+
+            /* 箱にうっすら影をつけます。 */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+
+            /* 下に余白を作ります。 */
             margin-bottom: 60px;
-            border-left: 10px solid var(--primary-green);
         }
 
-        .intro-box p {
-            font-size: 1.1rem;
-            margin-bottom: 20px;
+        /* プロジェクト説明の見出しです。 */
+        .intro-title {
+            /* 文字を大きくします。 */
+            font-size: 40px;
+
+            /* 見出しの色を濃い青にします。 */
+            color: #1e3a8a;
+
+            /* 緑の下線をつけます。 */
+            border-bottom: 5px solid #4ade80;
+
+            /* 下線と文字の間に余白を入れます。 */
+            padding-bottom: 10px;
+
+            /* 見出しの幅を文字の長さに合わせます。 */
+            display: inline-block;
+
+            /* 上の余白をなくし、下に余白を作ります。 */
+            margin: 0 0 30px 0;
         }
 
-        /* 体験の流れ：ステップ */
+        /* プロジェクト説明の文章です。 */
+        .intro-text {
+            /* 少し大きめの文字にします。 */
+            font-size: 18px;
+
+            /* 段落の下に余白を作ります。 */
+            margin: 0 0 20px 0;
+        }
+
+        /* 通常セクションの見出しを囲む場所です。 */
+        .section-title-area {
+            /* 中央揃えにします。 */
+            text-align: center;
+
+            /* 見出しの下に余白を作ります。 */
+            margin-bottom: 50px;
+        }
+
+        /* 通常セクションの見出しです。 */
+        .section-title {
+            /* 文字を大きくします。 */
+            font-size: 40px;
+
+            /* 見出しの色を濃い青にします。 */
+            color: #1e3a8a;
+
+            /* 緑の下線をつけます。 */
+            border-bottom: 5px solid #4ade80;
+
+            /* 下線と文字の間に余白を入れます。 */
+            padding-bottom: 10px;
+
+            /* 見出しの幅を文字の長さに合わせます。 */
+            display: inline-block;
+
+            /* 余白をなくします。 */
+            margin: 0;
+        }
+
+        /* 体験の流れ全体を囲む場所です。 */
         .steps {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
+            /* 下に余白を作ります。 */
             margin-bottom: 60px;
         }
 
-        .step-card {
-            background: var(--white);
+        /* 1つ目のステップカードです。共通化せず、あえて個別に書いています。 */
+        .step1 {
+            background-color: #ffffff;
             padding: 30px;
             border-radius: 20px;
             text-align: center;
-            transition: transform 0.3s ease;
-            position: relative;
+            margin-bottom: 30px;
         }
 
-        .step-card:hover {
-            transform: translateY(-10px);
+        /* 2つ目のステップカードです。1つ目と同じでも、あえて個別に書いています。 */
+        .step2 {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            margin-bottom: 30px;
         }
 
-        .step-num {
+        /* 3つ目のステップカードです。1つ目や2つ目と同じでも、あえて個別に書いています。 */
+        .step3 {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        /* 1つ目の番号です。 */
+        .step1-number {
             width: 50px;
             height: 50px;
-            background: var(--primary-green);
-            color: white;
+            background-color: #4ade80;
+            color: #ffffff;
             border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            line-height: 50px;
+            text-align: center;
+            font-size: 24px;
             font-weight: bold;
-            font-size: 1.5rem;
-            margin: 0 auto 20px;
+            margin: 0 auto 20px auto;
         }
 
-        .step-card h3 {
-            margin-bottom: 15px;
-            color: var(--secondary-blue);
+        /* 2つ目の番号です。 */
+        .step2-number {
+            width: 50px;
+            height: 50px;
+            background-color: #4ade80;
+            color: #ffffff;
+            border-radius: 50%;
+            line-height: 50px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            margin: 0 auto 20px auto;
         }
 
-        /* 記憶のグッズセクション */
-        .goods-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
+        /* 3つ目の番号です。 */
+        .step3-number {
+            width: 50px;
+            height: 50px;
+            background-color: #4ade80;
+            color: #ffffff;
+            border-radius: 50%;
+            line-height: 50px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            margin: 0 auto 20px auto;
         }
 
-        .goods-item {
-            background: linear-gradient(135deg, #ffffff 0%, #f9fafb 100%);
+        /* 1つ目のステップ見出しです。 */
+        .step1-title {
+            color: #3b82f6;
+            font-size: 24px;
+            margin: 0 0 15px 0;
+        }
+
+        /* 2つ目のステップ見出しです。 */
+        .step2-title {
+            color: #3b82f6;
+            font-size: 24px;
+            margin: 0 0 15px 0;
+        }
+
+        /* 3つ目のステップ見出しです。 */
+        .step3-title {
+            color: #3b82f6;
+            font-size: 24px;
+            margin: 0 0 15px 0;
+        }
+
+        /* 1つ目のステップ説明文です。 */
+        .step1-text {
+            margin: 0;
+        }
+
+        /* 2つ目のステップ説明文です。 */
+        .step2-text {
+            margin: 0;
+        }
+
+        /* 3つ目のステップ説明文です。 */
+        .step3-text {
+            margin: 0;
+        }
+
+        /* 記憶のグッズの説明文です。 */
+        .goods-lead {
+            margin: 10px 0 0 0;
+        }
+
+        /* 1つ目のグッズカードです。共通化せず、あえて個別に書いています。 */
+        .goods1 {
+            background-color: #ffffff;
             border: 2px solid #e5e7eb;
             padding: 25px;
             border-radius: 20px;
-            display: flex;
-            align-items: flex-start;
-            gap: 15px;
+            margin-bottom: 20px;
         }
 
-        .goods-item i {
-            font-size: 2rem;
-            color: var(--accent-yellow);
-            background: var(--dark-blue);
-            padding: 15px;
-            border-radius: 15px;
+        /* 2つ目のグッズカードです。1つ目と同じでも、あえて個別に書いています。 */
+        .goods2 {
+            background-color: #ffffff;
+            border: 2px solid #e5e7eb;
+            padding: 25px;
+            border-radius: 20px;
+            margin-bottom: 20px;
         }
 
-        /* ビジョン・メッセージ */
+        /* 3つ目のグッズカードです。1つ目や2つ目と同じでも、あえて個別に書いています。 */
+        .goods3 {
+            background-color: #ffffff;
+            border: 2px solid #e5e7eb;
+            padding: 25px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+        }
+
+        /* 1つ目のグッズアイコンです。 */
+        .goods1-icon {
+            font-size: 36px;
+            margin: 0 0 10px 0;
+        }
+
+        /* 2つ目のグッズアイコンです。 */
+        .goods2-icon {
+            font-size: 36px;
+            margin: 0 0 10px 0;
+        }
+
+        /* 3つ目のグッズアイコンです。 */
+        .goods3-icon {
+            font-size: 36px;
+            margin: 0 0 10px 0;
+        }
+
+        /* 1つ目のグッズ見出しです。 */
+        .goods1-title {
+            font-size: 20px;
+            color: #1e3a8a;
+            margin: 0 0 10px 0;
+        }
+
+        /* 2つ目のグッズ見出しです。 */
+        .goods2-title {
+            font-size: 20px;
+            color: #1e3a8a;
+            margin: 0 0 10px 0;
+        }
+
+        /* 3つ目のグッズ見出しです。 */
+        .goods3-title {
+            font-size: 20px;
+            color: #1e3a8a;
+            margin: 0 0 10px 0;
+        }
+
+        /* 1つ目のグッズ説明文です。 */
+        .goods1-text {
+            margin: 0;
+        }
+
+        /* 2つ目のグッズ説明文です。 */
+        .goods2-text {
+            margin: 0;
+        }
+
+        /* 3つ目のグッズ説明文です。 */
+        .goods3-text {
+            margin: 0;
+        }
+
+        /* ビジョンを伝える濃い青のエリアです。 */
         .vision {
-            background: var(--dark-blue);
-            color: var(--white);
+            background-color: #1e3a8a;
+            color: #ffffff;
             padding: 80px 20px;
             text-align: center;
             border-radius: 50px;
             margin: 60px 0;
         }
 
-        .vision h2 {
-            margin-bottom: 30px;
-            color: var(--primary-green);
+        /* ビジョンエリアの見出しです。 */
+        .vision-title {
+            color: #4ade80;
+            font-size: 32px;
+            margin: 0 0 30px 0;
         }
 
+        /* ビジョンエリアの文章です。 */
+        .vision-text {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 19px;
+        }
+
+        /* フッターです。 */
         footer {
             text-align: center;
             padding: 40px;
-            color: #666;
-            font-size: 0.9rem;
+            color: #666666;
+            font-size: 14px;
         }
 
-        /* レスポンシブ */
+        /* スマホなど、画面が768px以下のときだけ適用します。 */
         @media (max-width: 768px) {
-            .hero-content h1 { font-size: 2.2rem; }
-            .section-title h2 { font-size: 1.8rem; }
+            /* スマホでは通常見出しも少し小さくします。 */
+            .section-title {
+                font-size: 29px;
+            }
+
+            /* スマホではプロジェクト説明の見出しも少し小さくします。 */
+            .intro-title {
+                font-size: 29px;
+            }
         }
     </style>
 </head>
-<body>
 
+<body>
+    <!-- ページ最上部の大きな見せ場です。 -->
     <header>
-        <div class="hero-content">
-            <h1>きみがつくるAIモンスターで<br>環境を守れ！</h1>
-            <p>生成AIは、きみの想像力を形にする「相棒」だ。</p>
-        </div>
     </header>
 
-    <div class="container">
-        
-        <section class="intro-box">
-            <div class="section-title" style="text-align: left; margin-bottom: 30px;">
-                <h2>プロジェクトについて</h2>
+    <!-- ページ本文です。 -->
+    <main>
+    
+        <section class="doc-section">
+            <div class="section-title-area">
+                <h2 class="section-title">6月14日に開催された親子向けAI講座の資料</h2>
             </div>
-            <p>本プロジェクトは、生成AIを「答えを出す道具」ではなく、子どもたちの発想を引き出し、具体化し、形にしていく<strong>“相棒”</strong>として用いる体験型イベントです。</p>
-            <p>環境問題を「悪循環の世界（ステージ）」として捉え、自分だけのモンスターと共にその連鎖を断ち切る挑戦。その過程すべてが、世界に一つだけの「記憶のグッズ」として形になります。</p>
-        </section>
+            
+            <div class="doc-container">
+                <div class="doc-card">
+                    <a href="./assets/doc/kouza1.pdf" class="doc-link" target="_blank">
+                        <img src="./assets/img/kouza1.png" alt="親子で考えるAIとの向き合い方講座" class="doc-image">
+                        <p class="doc-title">親子で考えるAIとの向き合い方講座</p>
+                    </a>
+                </div>
 
-        <section>
-            <div class="section-title">
-                <h2>体験の流れ</h2>
-            </div>
-            <div class="steps">
-                <div class="step-card">
-                    <div class="step-num">1</div>
-                    <h3>ステージを選ぶ</h3>
-                    <p>ゴミ、資源、海洋プラスチック、CO₂。きみが向き合いたい「悪循環の世界」を選ぼう。環境問題は、きみが関わる世界の状態なんだ。</p>
-                </div>
-                <div class="step-card">
-                    <div class="step-num">2</div>
-                    <h3>モンスターをつくる</h3>
-                    <p>AIはきみの伴走者。きみの絵と言葉をヒントに、能力や特徴を一緒に考えるよ。作者はAIじゃなく、きみ自身だ！</p>
-                </div>
-                <div class="step-card">
-                    <div class="step-num">3</div>
-                    <h3>悪循環に挑む</h3>
-                    <p>大事なのは「勝ち負け」じゃない。世界の状態をどれだけ改善できたか。友達と協力すれば、もっと大きな変化が起こせるかも？</p>
+                <div class="doc-card">
+                    <a href="./assets/doc/kouza2.pdf" class="doc-link" target="_blank">
+                        <img src="./assets/img/kouza2.png" alt="親子で考えるAI時代の歩き方" class="doc-image">
+                        <p class="doc-title">親子で考えるAI時代の歩き方（徳和貴成）</p>
+                    </a>
                 </div>
             </div>
         </section>
+            
 
-        <section>
-            <div class="section-title">
-                <h2>世界で一つの“記憶のグッズ”</h2>
-                <p style="margin-top: 10px;">体験した「過程」そのものを、一生の宝物に。</p>
-            </div>
-            <div class="goods-grid">
-                <div class="goods-item">
-                    <i class="fas fa-book-open"></i>
-                    <div>
-                        <h4>挑戦の経緯を絵本化</h4>
-                        <p>どんな工夫をして世界を変えたか。きみが主役の物語を読み返すたび、体験が蘇る。</p>
-                    </div>
-                </div>
-                <div class="goods-item">
-                    <i class="fas fa-cube"></i>
-                    <div>
-                        <h4>3Dフィギュア・アクセ化</h4>
-                        <p>自分のモンスターを立体に。触れられる形にすることで、記憶はもっと強くなる。</p>
-                    </div>
-                </div>
-                <div class="goods-item">
-                    <i class="fas fa-music"></i>
-                    <div>
-                        <h4>AIが作るオリジナルテーマ曲</h4>
-                        <p>きみの指示を元に、モンスターの性格や能力を音楽に変換。音で記憶を呼び起こそう。</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
+        <!-- 最後にプロジェクトの考え方を強く伝えるセクションです。 -->
         <section class="vision">
-            <h2>「その日だけ」で終わらない学びを</h2>
-            <p style="max-width: 800px; margin: 0 auto; font-size: 1.2rem;">
+            <!-- ビジョンの見出しです。 -->
+            <h2 class="vision-title">
+                「その日だけ」で終わらない学びを
+            </h2>
+
+            <!-- ビジョンの本文です。 -->
+            <p class="vision-text">
                 環境問題に向き合うことは、正解を覚えることではありません。<br>
                 「どうすればよいか」を考え続け、状況に応じて工夫し、他者と関係を結び直すことです。<br><br>
                 私たちは、AIを“創造と探究の伴走者”として、<br>
                 子どもたちが「世界を変えようとした証拠」を日常へ持ち帰る仕組みをつくります。
             </p>
         </section>
+    </main>
 
-    </div>
+    <!-- ページ最下部の著作権表示です。 -->
+<footer>
+         <p>
+           © 2026 きみがつくるAIモンスターで環境を守れ！ Project<br>
+           お問い合わせ先：<br>
+           <a href="mailto:t-tok@a.email.ne.jp">t-tok@a.email.ne.jp</a>
+         </p>
+     </footer></body>
 
-    <footer>
-        <p>© 2026 きみがつくるAIモンスターで環境を守れ！ Project</p>
-    </footer>
-
-</body>
 </html>
