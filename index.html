@@ -48,7 +48,9 @@
             background-repeat: no-repeat;
 
             /* ヘッダーの高さを画面の80%にします。 */
-            height: 80vh;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            height: min(calc(100vw * (9 / 16)), 80vh);
 
             /* 文字を中央揃えにします。 */
             text-align: center;
@@ -436,10 +438,7 @@
 
         /* スマホなど、画面が768px以下のときだけ適用します。 */
         @media (max-width: 768px) {
-            header {
-                height: 40vh; /* 80vhから40vh（または auto ）に変更 */
-            }
-                        /* スマホでは通常見出しも少し小さくします。 */
+            /* スマホでは通常見出しも少し小さくします。 */
             .section-title {
                 font-size: 29px;
             }
